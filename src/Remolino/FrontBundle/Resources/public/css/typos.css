@@ -1,0 +1,38 @@
+@font-face {
+    font-family:'Trade Gothic LT Std Bold';
+    src: url('../typos/TradeGothicLTStd-Bold.eot');
+  src: url('../typos/TradeGothicLTStd-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../typos/TradeGothicLTStd-Bold.woff2') format('woff2'),
+    url('../typos/TradeGothicLTStd-Bold.woff') format('woff'),
+    url('../typos/TradeGothicLTStd-Bold.svg#TradeGothicLTStd-Bold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: semi-condensed;
+    unicode-range: U+0020-00FE;
+}
+
+@font-face {
+    font-family:'Trade Gothic LT Std';
+    src: url('../typos/TradeGothicLTStd.eot');
+  src: url('../typos/TradeGothicLTStd.eot?#iefix') format('embedded-opentype'),
+    url('../typos/TradeGothicLTStd.woff2') format('woff2'),
+    url('../typos/TradeGothicLTStd.woff') format('woff'),
+    url('../typos/TradeGothicLTStd.svg#TradeGothicLTStd') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-00FE;
+}
+
+@font-face {
+    font-family:'Trade Gothic LT Std Light';
+    src: url('../typos/TradeGothicLTStd-Light.eot');
+  src: url('../typos/TradeGothicLTStd-Light.eot?#iefix') format('embedded-opentype'),
+    url('../typos/TradeGothicLTStd-Light.woff2') format('woff2'),
+    url('../typos/TradeGothicLTStd-Light.woff') format('woff'),
+    url('../typos/TradeGothicLTStd-Light.svg#TradeGothicLTStd-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-00FE;
+}

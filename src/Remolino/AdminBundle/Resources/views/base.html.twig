@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        {% block stylesheets %}{% endblock %}
+    </head>
+
+    <body class="{% block bodyClass %}{% endblock %}">
+        <div class="{% block mainDivClass %}{% endblock %}">
+            {% block header %}{% endblock %}
+            {% block sidebar %}{% endblock %}
+            {% block body %}{% endblock %}
+            {% block controlSidebar %}{% endblock %}
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

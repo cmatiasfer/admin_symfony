@@ -1,0 +1,153 @@
+/* PANEL */
+
+.user-panel>.info {
+    left: 0;
+    position: relative;
+}
+
+.sidebar-mini.sidebar-collapse .main-sidebar .user-panel {
+    padding: 0px !important;
+}
+
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header {
+    height: auto;
+}
+
+/* FORMS */
+form[name="admin_search"]>fieldset>legend{
+    display: none;
+}
+input[type=checkbox] {
+    margin-left: 5px;
+}
+
+.cropper-local input[type="file"] {
+    display: none;
+}
+
+.form-group .row {
+    margin: auto 0;
+}
+
+legend {
+    border-bottom: 0;
+    font-size: 14px;
+}
+
+.form-error-message {
+    color: #ff0000;
+}
+
+.badge-danger {
+    background-color: #ff0000;
+}
+
+.cropper .cropper-canvas-container>canvas {
+    max-width: 400px;
+    max-height: 250px;
+}
+
+#team_members_imageFile_delete {
+    margin: 5px 5px 0 0;
+}
+
+.cropper img {
+    width: 100%;
+    max-height: auto !important;
+}
+
+#countries_updateImage {
+    display: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+#commercials_updateImage {
+    display: none;
+}
+
+#photographers_updateImage {
+    display: none;
+}
+
+form[name="photographers"] .cropper img,
+form[name="countries"] .cropper img,
+form[name="directors"] .cropper img {
+    max-width: 100% !important;
+}
+
+@media (min-width: 992px) {
+    form[name="photographers"] .cropper img,
+    form[name="countries"] .cropper img,
+    form[name="directors"] .cropper img {
+        max-width: 600px !important;
+    }
+}
+
+/* Fix : Corrige label en input generados por VichUploader */
+.form-group legend {
+    font-weight: bold;
+}
+
+.tingle-modal-box canvas {
+    width: 100%;
+}
+
+
+.container-info-selected {
+    display: none;
+    justify-content: flex-end;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    background: rgba(137, 196, 244, 1);
+    z-index: 20;
+    transition: 0.5 ease;
+    border-bottom: 1px solid #000000;
+  }
+  
+  .container-info-selected .data {
+    display: flex;
+    align-items: center;
+  }
+  
+  .container-info-selected .data p,
+  .container-info-selected .data span {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 0px;
+  }
+  
+  .container-info-selected .actions {
+    margin-right: 40px;
+  }
+  
+  .container-info-selected .actions span {
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #fff;
+    border-radius: 80px;
+    padding: 5px 10px;
+  }
+  
+  .container-info-selected .actions span:hover {
+    color: rgba(137, 196, 244, 1);
+    background-color: #fff;
+  }
+
+  .content.content-table .form_delete{
+      display: inline-block;
+  }
+
+  fieldset.form-group{
+      display: block;
+      width: 100%;
+  }
+
+  img.preview{
+      width: 400px;
+      display: block;
+  }

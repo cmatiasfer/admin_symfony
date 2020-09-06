@@ -1,0 +1,32 @@
+
+{% extends '@admin_views/layout.html.twig' %}
+
+{% block title %}{{ name_admin() }} | Admin Blocks - Edit {{ cms_block.name }}{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Admin
+                <small>Edit Block <b>{{ cms_block.name }}</b></small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-shield"></i> Admin</li>
+                <li><a href="{{ path('admin_cms_blocks_index') }}"><i class="fa fa-column"></i> Blocks</a></li>
+                <li class="active">Edit {{ cms_block.name }}</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    {{ include('@admin_views/admin/_cms_blocks/_form.html.twig', {'button_label': 'update', 'button_class': 'success bg-olive', 'i_class': 'fa fa-edit'}) }}
+                    <a href="{{ path('admin_cms_blocks_index') }}" class="btn btn-default pull-right"><i class="fa fa-chevron-left"></i> back to list</a>
+                    {{ include('@admin_views/admin/_cms_blocks/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}

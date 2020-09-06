@@ -1,0 +1,9 @@
+app_annotations:
+    # loads routes from the PHP annotations of the controllers found in that directory
+    resource: '../src/Remolino/FrontBundle/Controller/'
+    type:     annotation
+    #prefix:
+    #    en: '' # don't prefix URLs for English, the default locale
+    #    es: '/es'
+    #    jp: '/jp'
+    

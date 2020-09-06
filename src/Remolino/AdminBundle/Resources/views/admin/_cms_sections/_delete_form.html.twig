@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('admin_cms_roles_delete', {'id': cms_section.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cms_section.id) }}">
+    <button class="btn btn-danger pull-left" style="margin-left: 5px;"><i class="fa fa-trash"></i> <span class="hidden-xs">delete</span></button>
+</form>

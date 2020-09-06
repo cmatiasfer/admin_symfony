@@ -1,0 +1,59 @@
+{% extends '@admin_views/layout.html.twig' %}
+
+{% block title %}{{ name_admin() }} | Admin Texts - {{ cms_text.variable }}{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Admin
+                <small>Text <b>{{ cms_text.variable }}</b></small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-shield"></i> Admin</li>
+                <li><a href="{{ path('admin_cms_texts_index') }}"><i class="fa fa-text-height"></i> Texts</a></li>
+                <li class="active">{{ cms_text.variable }}</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <table class="table table-bordered table-hover">
+                        <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ cms_text.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Variable</th>
+                                <td>{{ cms_text.variable }}</td>
+                            </tr>
+                            <tr>
+                                <th>Title</th>
+                                <td>{{ cms_text.titleEN }}</td>
+                            </tr>
+                            <tr>
+                                <th>Título</th>
+                                <td>{{ cms_text.titleES }}</td>
+                            </tr>
+                            <tr>
+                                <th>Text</th>
+                                <td>{{ cms_text.textEN|raw }}</td>
+                            </tr>
+                            <tr>
+                                <th>Texto</th>
+                                <td>{{ cms_text.textES|raw }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     <a href="{{ path('admin_cms_texts_edit', {'id': cms_text.id}) }}" class="btn bg-orange pull-left"><i class="fa fa-edit"></i> <span class="hidden-xs">edit<span></a>
+                    {{ include('@admin_views/admin/_cms_texts/_delete_form.html.twig') }}
+                    <a href="{{ path('admin_cms_texts_index') }}" class="btn btn-default pull-right"><i class="fa fa-chevron-left"></i> back to list</a>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}

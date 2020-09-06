@@ -1,0 +1,160 @@
+{% extends '@admin_views/layout.html.twig' %}
+
+{% block title %}La Red | Admin {{ section_title }} {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .content[data-name="associate"] .btn.btn-success,
+        .content[data-name="contact"] .btn.btn-success{
+            display:none;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Admin
+                <small>{{ section_title|title }}</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-shield"></i> Admin</li>
+                <li class="active">{{ section_title|title }}</li>
+            </ol>
+        </section>
+
+        {% if filters|length > 0 %}
+            <div class="content" style="min-height: auto">
+                <div class="box box-info" style="margin-bottom:0px">
+                    <div class="box-header with-border">
+                        <form action="{{path(route~'index')}}" method="POST">
+                            {% for filter in filters %}
+                                {{ filter|raw }}
+                            {% endfor %}
+                            <button class="btn bg-olive pull-left">
+                                <i class="fa fa-search"></i>
+                                <span class="hidden-xs">search</span>
+                            </button>
+                            &nbsp;
+                            <a href="{{ path(route~'index') }}" class="btn bg-orange">
+                                <i class="fa fa-refresh"></i>
+                                <span class="hidden-xs">refresh</span>
+                            </a>
+                        </form>
+                        <!-- /.box-tools -->
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Main content -->
+        <section class="content" data-name="{{ section }}">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success " style="display:none">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">{{ section_title|title }}</h3>
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="indexlist" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                {% for title in titles %}
+                                    <th>{{ title }}</th>
+                                {% endfor %}
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for data in entity %}
+                                {# Mailing #}
+                                {% set notWrittenColor = "" %}
+                                {% if  data.written is defined %}
+                                    {% if not data.written %}
+                                        {% set notWrittenColor = "#ecf0f5" %}
+                                    {% endif %}
+                                {% endif %}
+                                {# EndMailing #}
+                                <tr style="background-color:{{ notWrittenColor }}">
+                                    {% set count = 0 %}
+                                    {% for title in titles %}
+                                        {% if fields[count] %}
+                                            {% set value = attribute(data, fields[count]) %}
+                                            <td>
+                                                {% if title == "Image" or title == "Home Image" %}  {# Images #}
+                                                    <img src="{{ asset("images/"~folder~"/"~value) }}" alt="" style="width: 50px;" class="img-thumbnail">
+                                                {% elseif title == "PDF" %} {# PDFs #}
+                                                    <a href="{{ asset("images/"~folder~"/"~value) }}" download="file">Download PDF</a>
+                                                {% elseif title == "Link" or title == "URL" %} {# Links #}
+                                                    <a href="{{ value }}" target="_blank">{{ value }}</a>
+                                                {% elseif title == "Map Address" %} {# Address + Google Maps Link #}
+                                                    <a href="{{ data.gmapsLink }}" target="_blank">{{ value|raw }}</a>
+                                                {% elseif title == "Gmaps Link" %} {# Gmaps Links #}
+                                                    <a href="{{ value }}" target="_blank">{{ value }}</a>
+                                                {% elseif title == "Visible" or title == "On Home Page" or title == "Written" == "Visible on Header Menu" or title == "Written" == "Visible on Footer Menu" %} {# Checkboxs / Booleans #}
+                                                    {{ value ? 'Yes' : 'No' }}
+                                                {% elseif title == "City" %} {# Entity City #}
+                                                    {{ value.name|raw }}
+                                                {% elseif title == "Category" %} {# Entity Category #}
+                                                    {{ value.name|raw }}
+                                                {% elseif title == "Page" %} {# Entity Page #}
+                                                    {{ value.title|raw }}
+                                                {% else %}
+                                                    {{ value|raw }}
+                                                {% endif %}
+                                            </td>
+                                            {% set count = count + 1 %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <td>
+                                        <a href="{{ path(route~'show', {'id': data.id}) }}" class="btn bg-navy">
+                                            <i class="fa fa-file-text"></i> <span class="hidden-xs">show</span>
+                                        </a>
+                                        {% if section != 'contact' and section != 'associate' %}
+                                            <a href="{{ path(route~'edit', {'id': data.id}) }}" class="btn bg-orange">
+                                                <i class="fa fa-edit"></i> <span class="hidden-xs">edit</span>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6">No records</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+
+                        <tfoot>
+                            {% for title in titles %}
+                                <th>{{ title }}</th>
+                            {% endfor %}
+                            <th>Actions</th>
+                        </tfoot>
+                    </table>
+
+                    {% if (section != 'home' and section != 'home_gallery' and section != 'contact') or entity|length == 0 %}
+                        <a href="{{ path(route~'new') }}" class="btn bg-olive"><i class="fa fa-plus-circle"></i> add</a>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- DataTables -->
+    <script src="{{ asset('bundles/remolinoadmin/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bundles/remolinoadmin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/remolinoadmin/js/layouts_index.js') }}"></script>
+{% endblock %}

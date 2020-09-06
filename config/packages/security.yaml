@@ -1,0 +1,43 @@
+security:
+    encoders:
+        App\Remolino\CoreBundle\Entity\CmsUser:
+            algorithm: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Remolino\CoreBundle\Entity\CmsUser
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+                entry_point: App\Security\LoginFormAuthenticator
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path: '/'
+            logout:
+                path: admin_logout
+                target: admin_login
+
+    access_control:
+        # Admin
+        - { path: ^/admin/users, roles: ROLE_ADMIN }
+        - { path: ^/admin/roles, roles: ROLE_ADMIN }
+        - { path: ^/admin/blocks, roles: ROLE_ADMIN }
+        - { path: ^/admin/texts, roles: ROLE_ADMIN }
+        # General
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+    access_denied_url: /admin/login

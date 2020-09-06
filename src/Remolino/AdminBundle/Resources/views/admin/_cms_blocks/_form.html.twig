@@ -1,0 +1,4 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-{{ button_class|default('primary') }} pull-left"><i class="{{ i_class|default('fa fa-floppy-o') }}"></i> <span class="hidden-xs">{{ button_label|default('save') }}</span></button>
+{{ form_end(form) }}

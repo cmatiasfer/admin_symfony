@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('bundles/remolinofront/favicon/apple-touch-icon.png') }} ">
+		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('bundles/remolinofront/favicon/favicon-32x32.png') }}">
+		<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('bundles/remolinofront/favicon/favicon-16x16.png') }}">
+		{# <link rel="manifest" href="{{ asset('bundles/remolinofront/favicon/site.webmanifest') }} "> #}
+		<link rel="mask-icon" href="{{ asset('bundles/remolinofront/favicon/safari-pinned-tab.svg') }} " color="#5bbad5">
+		<link rel="shortcut icon" href="{{ asset('bundles/remolinofront/favicon/favicon.ico') }} ">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="msapplication-config" content="{{ asset('bundles/remolinofront/favicon/browserconfig.xml') }}">
+		<meta name="theme-color" content="#ffffff">
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        {% block stylesheets %}
+            <!-- Bootstrap 3.3.7 -->
+            <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+            <!-- Font Awesome -->
+            <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/bower_components/font-awesome/css/font-awesome.min.css') }}">
+            <!-- Ionicons -->
+            <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/bower_components/Ionicons/css/ionicons.min.css') }}">
+            <!-- Theme style -->
+            <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/dist/css/AdminLTE.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/dist/css/skins/_all-skins.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/css/toastr.css') }}">
+            
+            <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/css/custom_panel.css') }}">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        {% endblock %}
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            {% block header %}
+                {{ include('@admin_views/panel/header.html.twig') }}
+            {% endblock %}
+
+            {% block sidebar %}
+                {{ include('@admin_views/panel/sidebar.html.twig') }}
+            {% endblock %}
+
+            {% block body %}{% endblock %}
+
+            {% block controlSidebar %}
+                {{ include('@admin_views/panel/control.sidebar.html.twig') }}
+            {% endblock %}
+
+            {% block footer %}
+                {{ include('@admin_views/panel/footer.html.twig') }}
+            {% endblock %}
+        </div><!-- ./wrapper -->
+        {% block javascripts %}
+            <!-- jQuery 3 -->
+            <script src="{{ asset('bundles/remolinoadmin/bower_components/jquery/dist/jquery.min.js') }}"></script>
+            <script src="{{ asset('bundles/remolinoadmin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>  
+            <script src="{{ asset('bundles/remolinoadmin/js/toastr.min.js') }}"></script>
+            <script src="{{ asset('bundles/remolinoadmin/dist/js/adminlte.min.js') }}"></script>
+            <script src="{{ asset('bundles/remolinoadmin/dist/js/demo.js') }}"></script>
+            <script>
+            $(document).ready(function () {
+                setTimeout(function() {
+                    $('.treeview-menu li').each(function() {
+                        if ($(this).hasClass('active')) {
+                            $(this).parent().parent().children('a').click();
+                        }
+                    });
+                }, 350);
+            });
+            </script>
+        {% endblock %}
+    </body>
+</html>

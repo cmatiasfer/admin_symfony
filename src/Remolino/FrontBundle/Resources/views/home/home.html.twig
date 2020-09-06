@@ -1,0 +1,32 @@
+{% extends '@front_views/layout.html.twig' %}
+
+{% block SEO %}
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+{% endblock %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheet %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/remolinofront/css/home.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block sectionClass %}home{% endblock %}
+
+
+{# {% set title = "title" ~ lang_url %}
+{% set subtitle = "subtitle" ~ lang_url %}
+{% set text = "text"~ lang_url %} #}
+
+{% block body %}
+  <div>
+    <h1>RemolinoWeb</h1>
+  </div>
+{% endblock %}
+
+{% block slidersettings %}{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/remolinofront/js/home.js') }}"></script>
+{% endblock %}

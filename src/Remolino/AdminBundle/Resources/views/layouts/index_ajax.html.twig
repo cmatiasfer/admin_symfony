@@ -1,0 +1,150 @@
+{% extends '@admin_views/layout.html.twig' %}
+
+{% block title %}Lenceria Moda | Administrar {{ section_title }} {% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/css/autocomplete.css') }}">
+  <style>
+	  .content[data-name="associate"] .btn.btn-success,
+	  .content[data-name="contact"] .btn.btn-success {
+		display: none;
+	  }
+	  form > fieldset > legend {
+		display: none;
+	  }
+	  .preview-table{
+		width: 100px;
+		height: auto;
+	  }
+	  .form_delete{
+		float: none;
+		display: inline-block;
+	  }
+	  .form_delete > button {
+		margin-left: 0!important;
+	  }
+  </style>
+{% endblock %}
+
+{% block body %}
+<div class="content-wrapper">
+	<div class="container-info-selected">
+		<div class="actions">
+			<span class="remove-items"><i class="fa fa-trash"></i></span>
+		</div>
+		<div class="data"> 
+			<p><span class="count">0</span> Seleccionados</p>
+		</div>
+	</div>
+
+	<section class="content-header">
+		<h1> Administrar <small>{{ section_title }}</small> </h1>
+		<ol class="breadcrumb">
+			<li><i class="fa fa-shield"></i> Administrar</li>
+			<li class="active">{{ section_title }}</li>
+		</ol>
+	</section>
+
+	{% if form_search_bar %}
+		<div class="content" style="min-height: auto">
+			<div class="box box-info" style="margin-bottom:0px">
+				<div class="box-header with-border">
+					{{ form_start(form_search_bar) }}
+					{{ form_row(form_search_bar) }}
+					<input type="text" class="hidden" id="_mode" name="_mode" value="show">
+					<input type="text" class="hidden" id="_section" name="_section" value="{{section}}">
+					<input type="text" class="hidden" id="_list" name="_list" value="">
+					<button type="submit" id="buscar_tabla" class="btn btn-primary pull-left" data-setls="y">
+						<span>Buscar</span>
+					</button>
+					<a href="{{ path('list', {'section' : section}  ) }}" class="btn btn-default pull->left form-reset">Reset</a>
+					{{ form_end(form_search_bar) }}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+
+	  <!-- Main content -->
+	<section class="content content-table" data-name="{{ section }}">
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success " style="display:none"> {{ message }} </div>
+		{% endfor %}
+
+		<div class="box">
+			<div class="box-header">
+				<h3 class="box-title">{{ section_title }}</h3>
+			</div>
+			<div class="box-body">
+				<div class="table-responsive">
+					<table id="indexlist" class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th></th>
+								{% for column in columns|keys %}
+									<th>{{column}}</th>
+								{% endfor %}
+								{% if actions["edit"] or actions["delete"] %}
+									<th>Acciones</th>
+								{% endif %}
+							</tr>
+						</thead>
+					</table>
+				</div>
+				{% if  actions["add"] is same as(true) %}
+					<a href="{{ path('new' , { section : section }) }}" class="btn bg-olive"><i class="fa fa-plus-circle"></i> añadir</a>
+				{% else %}
+					{# actions["add"] : limit #}
+					{% if entity|length < actions["add"] %}
+						<a href="{{ path('new' , { section : section }) }}" class="btn bg-olive"><i class="fa fa-plus-circle"></i> añadir</a>
+					{% endif %}    
+				{% endif %}
+			</div>
+		</div>
+		
+		<input type="hidden" data-json="{{datatable["jsonColumn"]}}">
+		<input type="hidden" data-url="{{datatable["url"]}}">
+		<input type="hidden" data-pagelength="{{datatable["length"]}}">
+		{# <input type="hidden" data-repository="{{repository}}"> #}
+	</section>
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/remolinoadmin/js/tingle.js') }}"></script>
+  <!-- DataTables -->
+  <script src="{{ asset('bundles/remolinoadmin/bower_components/datatables.net/js/jquery.dataTables.js') }}"></script>
+  <script src="{{ asset('bundles/remolinoadmin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('bundles/remolinoadmin/js/jquery.autocomplete.min.js') }}"></script>
+  <script src="{{ asset('bundles/remolinoadmin/js/add_autocomplete.js') }}"></script>
+  <script src="{{ asset('bundles/remolinoadmin/js/view_index.js') }}"></script>
+  <script src="{{ asset('bundles/remolinoadmin/js/products_search_bar.js') }}"></script>
+  <script>
+	$(function () {
+		var json =  "{{datatable["jsonColumn"]}}";
+		var jsonFinal =  json.replace(/&quot;/g,'"');
+		var dataSend = '{"_section":"{{section}}"}';
+		
+		$('#indexlist').DataTable({
+			serverSide: true,
+			processing: true,
+			"ajax": {
+				"url": "{{datatable["url"]}}",
+				"contentType": "application/json",
+				"data": JSON.parse(dataSend)
+			},
+			'columns': JSON.parse(jsonFinal),
+			'pageLength': {{datatable["length"]}},
+			'paging': true,
+			'searching': false,
+			'lengthChange': false,
+			'ordering': false,
+			'autoWidth': false,
+			"columnDefs": [
+				{ "width": "50px", "targets": 0 }
+			]
+		});
+	});
+  </script>
+{% endblock %}

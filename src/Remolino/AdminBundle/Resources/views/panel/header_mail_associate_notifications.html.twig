@@ -1,0 +1,33 @@
+<li class="dropdown messages-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-handshake-o"></i>
+        <span class="label label-info">{{ mails|length }}</span>
+    </a>
+    <ul class="dropdown-menu">
+        <li class="header">You have {{ mails|length }} {{ (mails|length == 1) ? 'message' : 'messages' }} </li>
+        <li>
+            <!-- inner menu: contains the actual data -->
+            <ul class="menu">
+                {% for mail in mails %}
+                    <!-- start message -->
+                    <li>
+                        <a href="{{ path('contact_show', {'id': mail.id}) }}">
+                            <h4>
+                                {{ mail.name }}
+                                <small><i class="fa fa-clock-o"></i> {{ mail.dateAt }}</small>
+                                {# <small><i class="fa fa-clock-o"></i> {{ mail.dateAt|ago }}</small> #}
+                            </h4>
+
+                            <p>
+                                {% set message = mail.message|striptags|length >= 30 ? mail.message|striptags [:27] ~ '...' : mail.message|striptags %}
+                                {{ message }}
+                            </p>
+                        </a>
+                    </li>
+                    <!-- end message -->
+                {% endfor %}
+            </ul>
+        </li>
+        <li class="footer"><a href="{{ path('associate_index') }}">See All Messages</a></li>
+    </ul>
+</li>

@@ -1,0 +1,117 @@
+{% extends '@admin_views/layout.html.twig' %}
+
+{% block title %}La Red | {{ section_title|capitalize }} {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .mrg-bottom{
+            margin-bottom: 40px;
+        }
+        .equal{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .item-img{
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .table-bordered>tbody>tr>th {
+            min-width: 180px;
+        }
+        @media (max-width: 767px) {
+            .table-bordered>tbody>tr>th {
+                min-width: 120px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Admin
+                <small>{{ section_title|capitalize }}</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('admin_dashboard') }}"><i class="fa fa-dashboard"></i> Panel</a></li>
+                <li><a href="{{ path(route~'index') }}"><i class="fa fa-fa-file-text-o"></i> {{ section_title|capitalize }} </a></li>
+                <li class="active">{{ name }}</li>
+            </ol>
+        </section>
+
+        <section class="content">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <table class="table table-bordered table-hover">
+                        <tbody>
+                            {% set count = 0 %}
+                            {% for title in titles %}
+                                {# E.G: Entity
+                                value = entity.title
+                                value = entity.listingOrder
+                                value = entity.Visible  #}
+                                {% set value = attribute(entity, fields[count]) %}
+                                <tr>
+                                    <th>{{ title }}</th>
+                                    {% if fields[count] != "" %}
+                                        <td>
+                                            {% if title =="Image" or title == "Home Image" %}  {# Images #}
+                                                <img src="{{ asset("images/"~folder~"/"~value) }}" alt="" class="img-responsive" style="max-width:200px">
+                                            {% elseif title =="PDF" %} {# PDFs #}
+                                                <a href="{{ asset("images/"~folder~"/"~value) }}" download="file">Download PDF</a>
+                                            {% elseif title == "Link" or title == "URL" %} {# Links #}
+                                                <a href="{{ value }}" target="_blank">{{ value }}</a>
+                                            {% elseif title == "Map Address" %} {# Address + Google Map Link #}
+                                                <a href="{{ entity.gmapsLink }}" target="_blank">{{ value|raw }}</a>
+                                            {% elseif title == "Gmaps Link" %} {# Gmaps Links #}
+                                                <a href="{{ value }}" target="_blank">{{ value }}</a>
+                                            {% elseif title == "Visible" or title == "On Home Page" or title == "Written" == "Visible on Header Menu" or title == "Written" == "Visible on Footer Menu" %} {# Checkboxs / Booleans #}
+                                                    {{ value ? 'Yes' : 'No' }}
+                                            {% elseif title =="City" %} {# Entity City #}
+                                                {{ value.name|raw }}
+                                            {% elseif title =="Category" %} {# Entity Category #}
+                                                {{ value.name|raw }}
+                                            {% elseif title == "Page" %} {# Entity Page #}
+                                                    {{ value.title|raw }}
+                                            {% else %}
+                                                {{ value|raw }}
+                                            {% endif %}
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                                {% set count = count + 1 %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="imagesdb mrg-bottom">
+                        <div class="row equal">
+                            {% for image in images %}
+                                <div class="col-xs-6 col-sm-4 col-md-3 mrg-bottom">
+                                    <div class="item-img">
+                                        <img src="{{ asset("images/"~folder~"/"~image.mainImage)}}" alt="" class="img-responsive">
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% if section != 'contact' %}
+                        <a href="{{ path(route~'edit', {'id': entity.id}) }}" class="btn bg-orange pull-left">
+                            <i class="fa fa-edit"></i> <span class="hidden-xs">edit<span>
+                        </a>
+                    {% endif %}
+                    {% if section != 'home' and section != 'page'  and section != 'block_page' %}
+
+                    {{ include('@admin_views/layouts/_delete_form.html.twig', {'section': section}) }}
+                    {% endif %}
+                    <a href="{{ path(route~'index') }}" class="btn btn-default pull-right">
+                        <i class="fa fa-chevron-left"></i> back
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

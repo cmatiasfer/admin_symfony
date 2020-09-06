@@ -1,0 +1,7 @@
+<div class="pull-left image">
+    <img src="{{ (profile.imageName) ? asset('images/profile/' ~ profile.imageName) : asset('bundles/remolinoadmin/dist/img/user.png') }}" class="img-circle" alt="User Image">
+</div>
+<div class="pull-left info">
+    <p>{{ (profile.firstName is defined) ? profile.firstName : '' }} {{ (profile.lastName is defined) ? profile.lastName : '' }}</p>
+    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+</div>

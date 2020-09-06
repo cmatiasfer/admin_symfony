@@ -1,0 +1,119 @@
+admin:
+    name: AdminSymfony
+    entities:
+        #[name_section]
+            #config:
+                #TITLE: string
+                #FOLDER_IMAGES: string
+                #DROPZONE: string
+                    #MODE_EDITION_IMAGE: string
+                    #DIMENSIONS: string
+                    #FILETYPE: string
+                    #LANG: string
+                    #MAXFILESIZE: string
+                    #ADD_FORM: bool
+            #list:
+                #actions:
+                    #add: {true} - int | bool
+                    #edit: {true} -  bool
+                    #delete: {true} -  bool
+                    ###preview: {true} -  bool | string ->notWorking
+                #order_by:
+                    #[field] : [mode_order]
+                #search_bar: {false} - bool | string(notWorking)
+                    #"Para agregar un buscador se necesitan 2 archivos"    
+                    #"FormBuilder" 
+                        #"El form tiene que estar dentro del direct Form/Searchbar"    
+                        #"Debe tener el nombre de la seccion y a continuacion 'Type'"    
+                        #"Ejemplo: Seccion Pedido -> PedidoType.php"
+                    #"Query Repository"
+                        #"Agregue una nueva function con el siguiente nombre y sus parametros "
+                        #findAdmin($parameters,$limit)
+                        #$parameters : array -> [id] => "value"
+                    
+                    #important!: Los values(inputs) que son enviados son los que tienen la clase '.send_param'
+                        
+                    #form_class: class ->notWorking
+                #columns: array 
+                    #[header_table]:[field]
+                #path_view: string
+
+                ##configDatatable##
+                #ajax_url: string 
+                #columns: json
+                #page_length: int
+        texts:
+            config:
+                TITLE: 'Textos'
+                FOLDER_IMAGES: 'texts'
+            list:
+                columns: 
+                    Variable: variable
+                    Titulo: title
+                    Sección: section
+        images_site:
+            plugins:
+                cropper: false
+                ckeditor: false
+            config:
+                TITLE: 'Images'
+                FOLDER_IMAGES: 'texts'
+                images_upload:
+                    image: #field
+                        exceptions:
+                            name: #field
+                                home: #value
+                                    #rules
+                                    dimensions:
+                                        width: 1020
+                                        height: 720                            
+                                    mode:
+                                        - resizeToWidth
+                                        - crop
+                                about: #value
+                                    #rules
+                                    dimensions:
+                                        width: 400                            
+                                    mode:
+                                        - resizeToWidth                                       
+                                contact: #value
+                                    #rules
+                                    dimensions:
+                                        width: 100
+                                        height: 500                            
+                                    mode:
+                                       - crop
+                        #rules - default
+                        dimensions:
+                            width: 500
+                            height: 500                            
+                        mode:
+                            - resizeToWidth
+                            - crop
+            list:
+                columns: 
+                    Imagen: image
+                    Nombre: name
+                    Descripción: description
+        home:
+            config:
+                TITLE: 'Home'
+                #FOLDER_IMAGES: 'texts'
+                DROPZONE:
+                    #MODE_EDITION_IMAGE: 'resize'
+                    #DIMENSIONS: '767x900'
+                    rules_image:
+                        dimensions:
+                            width: 500
+                            height: 500                            
+                        mode:
+                            - resizeToWidth
+                            - crop
+                    FILETYPE: '.jpg,.jpeg'
+                    LANG: 'es'
+                    MAXFILESIZE: '10'
+                    ADD_FORM: false
+            list:
+                columns: 
+                    Nombre: name
+            

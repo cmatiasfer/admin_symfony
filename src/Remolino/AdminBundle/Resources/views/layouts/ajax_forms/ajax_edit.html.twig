@@ -1,0 +1,76 @@
+{% block stylesheets %}
+    <style>
+        .tingle-modal-box .content-wrapper{
+            margin-left:0px!important;
+        }
+        .tingle-modal-box .form-check #locations_updateImage{
+            display:none;
+        }
+        .tingle-modal-box .content{
+            padding:0px;
+        }
+        .tingle-modal-box .modal-dialog{
+            width:100%;
+        }
+        .tingle-modal-box .modal.fade.in{
+            padding-left:0px!important;
+        }
+        .tingle-modal-box .content{
+            min-height:0px!important;
+        }
+        
+        .tingle-modal-box .content{
+            min-height:0px!important;
+        }
+    
+        #home_slides_updateImage{
+            display:none;
+        }
+
+        #home_slides .form-group .form-check #home_slides_updateImage{
+            display:none;
+        }
+        .d-block{
+            display:block!important
+        }
+        /* img{
+            max-width:100%
+        }
+        .cropper canvas{
+            width:100%
+        } */
+        .alert span{
+            color:#fff;
+        }
+        #seccion-ajax .cropper-canvas-container img{
+             max-width:100%!important;
+        }
+    </style>
+{% endblock %}
+
+{% if  entity.media is defined %}
+    {% set type = entity.media|split(".") %}
+
+    {% if type[1] == "jpeg" or type[1] == "png" or type[1] == "jpg" or type[1] == "gif" %}
+        <style>
+            #film_tv_gallery fieldset:nth-child(1){
+                display:none!important;
+            }
+        </style>
+    {% endif %}
+{% endif %}
+
+
+
+<div id="seccion-ajax" data-name="{{ section }}" data-id="{{ entity.id }}">
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-warning">
+            <div class="box-header with-border">
+                {{ include('@admin_views/layouts/ajax_forms/ajax_form.html.twig',{'button_label': 'update', 'button_class': 'success', 'i_class': 'fa fa-edit'}) }}
+            </div>
+        </div>
+        
+    </section>
+    <!-- /.content -->
+</div>

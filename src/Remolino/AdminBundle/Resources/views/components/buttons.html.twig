@@ -1,0 +1,28 @@
+{# {% if section == 'products' or section == 'brands' or section == 'categories'  %}
+{% if section == 'products' %}
+    <a href="{{ path('producto_detalle', {'producto':  data.seoUrl,'categorias': 'preview' }) }}" class="btn bg-navy" rel="nofollow" target="_blank">
+{% elseif section == 'brands' %}
+    <a href="{{ path('preview-productos_marca', {'brandUrl': data.seoUrl }) }}" class="btn bg-navy" rel="nofollow" target="_blank">
+{% endif %}
+        <i class="fa fa-external-link-square"></i> <span class="hidden-xs">ver</span>
+    </a>
+{% endif %} #}
+{% set dataRow = {'id': row.id, 'section': section} %}
+
+
+{% if actions["edit"] %}
+    <a href="{{ path('edit', dataRow) }}" class="btn bg-orange" >
+        <i class="fa fa-edit"></i>
+        <span class="hidden-xs hidden-sm">editar</span>
+</a>
+{% endif %}
+
+{% if actions["delete"] %}
+    {% set url_delete = path('delete', dataRow) %}
+    
+    <form method="post" action="{{ url_delete }}" onsubmit="return confirm('¿Seguro que deseas eliminar este elemento?');" class="form_delete">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ row.id) }}">
+        <button class="btn btn-danger" style="margin-left:5px;"><i class="fa fa-trash"></i> <span class="hidden-xs hidden-sm"> borrar</span></button>
+    </form>
+{% endif %}

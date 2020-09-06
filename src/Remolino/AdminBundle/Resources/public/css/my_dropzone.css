@@ -1,0 +1,343 @@
+/*PRELOAD*/
+.bubblingG {
+    text-align: center;
+    width: 78px;
+    height: 49px;
+    margin: auto;
+}
+
+.bubblingG span {
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px;
+    height: 10px;
+    margin: 24px auto;
+    background: rgb(0, 135, 247);
+    border-radius: 49px;
+    -o-border-radius: 49px;
+    -ms-border-radius: 49px;
+    -webkit-border-radius: 49px;
+    -moz-border-radius: 49px;
+    animation: bubblingG 1.5s infinite alternate;
+    -o-animation: bubblingG 1.5s infinite alternate;
+    -ms-animation: bubblingG 1.5s infinite alternate;
+    -webkit-animation: bubblingG 1.5s infinite alternate;
+    -moz-animation: bubblingG 1.5s infinite alternate;
+}
+
+#bubblingG_1 {
+    animation-delay: 0s;
+    -o-animation-delay: 0s;
+    -ms-animation-delay: 0s;
+    -webkit-animation-delay: 0s;
+    -moz-animation-delay: 0s;
+}
+
+#bubblingG_2 {
+    animation-delay: 0.45s;
+    -o-animation-delay: 0.45s;
+    -ms-animation-delay: 0.45s;
+    -webkit-animation-delay: 0.45s;
+    -moz-animation-delay: 0.45s;
+}
+
+#bubblingG_3 {
+    animation-delay: 0.9s;
+    -o-animation-delay: 0.9s;
+    -ms-animation-delay: 0.9s;
+    -webkit-animation-delay: 0.9s;
+    -moz-animation-delay: 0.9s;
+}
+
+
+
+@keyframes bubblingG {
+    0% {
+        width: 10px;
+        height: 10px;
+        background-color: rgb(0, 135, 247);
+        transform: translateY(0);
+    }
+
+    100% {
+        width: 23px;
+        height: 23px;
+        background-color: rgb(255, 255, 255);
+        transform: translateY(-20px);
+    }
+}
+
+@-o-keyframes bubblingG {
+    0% {
+        width: 10px;
+        height: 10px;
+        background-color: rgb(0, 135, 247);
+        -o-transform: translateY(0);
+    }
+
+    100% {
+        width: 23px;
+        height: 23px;
+        background-color: rgb(255, 255, 255);
+        -o-transform: translateY(-20px);
+    }
+}
+
+@-ms-keyframes bubblingG {
+    0% {
+        width: 10px;
+        height: 10px;
+        background-color: rgb(0, 135, 247);
+        -ms-transform: translateY(0);
+    }
+
+    100% {
+        width: 23px;
+        height: 23px;
+        background-color: rgb(255, 255, 255);
+        -ms-transform: translateY(-20px);
+    }
+}
+
+@-webkit-keyframes bubblingG {
+    0% {
+        width: 10px;
+        height: 10px;
+        background-color: rgb(0, 135, 247);
+        -webkit-transform: translateY(0);
+    }
+
+    100% {
+        width: 23px;
+        height: 23px;
+        background-color: rgb(255, 255, 255);
+        -webkit-transform: translateY(-20px);
+    }
+}
+
+@-moz-keyframes bubblingG {
+    0% {
+        width: 10px;
+        height: 10px;
+        background-color: rgb(0, 135, 247);
+        -moz-transform: translateY(0);
+    }
+
+    100% {
+        width: 23px;
+        height: 23px;
+        background-color: rgb(255, 255, 255);
+        -moz-transform: translateY(-20px);
+    }
+}
+
+
+.change {
+    background-color: rgba(0, 166, 90, 0.5) !important;
+}
+
+.dropzone .dz-preview.dz-image-preview {
+    z-index: 20;
+    border-radius: 10px;
+}
+
+.dropzone .dz-preview.dz-image-preview:hover {
+    background-color: #eee;
+}
+
+.dropzone.drag .dz-preview.dz-image-preview:hover {
+    background-color: transparent !important;
+}
+
+.dropzone {
+    border: 2px dashed #ccc !important;
+    margin-bottom: 20px;
+}
+
+.dz-remove {
+    color: #fff;
+}
+
+.dz-details .dz-size {
+    display: none;
+}
+
+.dz-preview {
+    padding: 10px;
+}
+
+.dz-preview.dz-complete .dz-image {
+    display: flex;
+    align-items: center;
+}
+
+.dz-preview.dz-complete .dz-image img {
+    width: 100%;
+}
+
+.order-image {
+    width: 80px;
+    height: 20px;
+    margin: 10px auto 10px;
+    display: block;
+    padding: 0px 10px;
+    height: 20px;
+    border-radius: 90px;
+    -webkit-appearance: none;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-size: 15px;
+    outline: none;
+}
+
+.updateItem,
+.updateItem i {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px;
+}
+
+.viewImage,
+.trashItem {
+    cursor: pointer !important;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+}
+
+.dz-remove {
+    display: none !important;
+}
+
+/*
+.dz-default.dz-message{
+    display:none;
+}
+*/
+
+.preview video,
+.preview img {
+    display: none;
+    margin-bottom: 40px;
+    margin-right: 15px;
+}
+
+#gallery {
+    min-height: 300px;
+    position: relative;
+}
+
+#gallery .preload {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 50;
+    background-color: #fff;
+    display: flex;
+}
+
+/*TINGLE CSS */
+.tingle-modal {
+    z-index: 9999;
+}
+
+@media only screen and (max-width: 890px) {
+    .cropper-canvas-container img {
+        width: 100%;
+        display: block;
+        height: auto !important;
+        max-height: auto !important;
+    }
+}
+
+.buttons-listing-order {
+    min-height: 40px;
+    display: flex;
+}
+
+.buttons-listing-order .edit {
+    height: 34px;
+}
+
+.buttons-listing-order .save-listing-order {
+    height: 34px;
+    display: none
+}
+
+.mode-edit-order .dz-image {
+    opacity: 0.2;
+}
+
+.dropzone.mode-edit-order {
+    cursor: grab;
+}
+
+.dropzone.mode-edit-order:active {
+    cursor: grabbing;
+}
+
+.item {
+    margin-top: 10px;
+}
+
+.modal-backdrop {
+    display: none;
+}
+
+.modal-open .modal {
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .modal-dialog {
+        width: 60% !important;
+        margin: auto;
+    }
+}
+
+/* .tingle-modal-box .cropper .form-group .form-check {
+    display: none;
+} */
+
+.tingle-modal-box .content-wrapper {
+    margin-left: 0px !important;
+}
+
+.tingle-modal-box .form-check #pictures_updateImage {
+    display: none;
+}
+
+.tingle-modal-box .content {
+    padding: 0px;
+}
+
+.tingle-modal-box .modal-dialog {
+    width: 100%;
+}
+
+.tingle-modal-box .modal.fade.in {
+    padding-left: 0px !important;
+}
+
+/* .tingle-modal img {
+    max-width: 100% !important;
+} */
+
+#pictures .cropper canvas {
+    width: 100%
+}
+
+
+/* .sortable-ghost{
+    background-color: red!important;
+} */
+/* .sortable-chosen{
+    background-color: blue!important;
+} */
+/* .sortable-drag{
+    background-color: green!important;
+}  */

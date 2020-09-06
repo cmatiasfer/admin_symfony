@@ -1,0 +1,23 @@
+.tingle-modal-box .content-wrapper {
+    margin-left: 0px !important;
+}
+
+.tingle-modal-box .form-check #pictures_updateImage {
+    display: none;
+}
+
+.tingle-modal-box .content {
+    padding: 0px;
+}
+
+.tingle-modal-box .modal-dialog {
+    width: 100%;
+}
+
+.tingle-modal-box .modal.fade.in {
+    padding-left: 0px !important;
+}
+
+#pictures .cropper canvas {
+    width: 100%
+}

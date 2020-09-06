@@ -1,0 +1,114 @@
+{% set hasRelationship = false %}
+
+{% if section == 'category' %}
+    {# Commerces #}
+    {% set commerces = [] %}
+    {% if row.commerces|length > 0 %}
+        {% set commerces = [] %}
+        
+        {% for commerce in row.commerces %}
+            {% set commerces = commerces|merge([
+                {
+                    'name' : commerce.name|title
+                }
+            ]) %}
+        {% endfor %}
+        {% set hasRelationship = true %}
+    {% endif %}
+
+    {% if hasRelationship %}
+        <button id="button-del" class="btn btn-danger pull-left" style="margin-left: 5px;"><i class="fa fa-trash"></i> <span class="hidden-xs">delete</span></button>
+        <script>
+            let commercesObject = {{ commerces|json_encode()|raw }};
+            let commercesList = `Commerces\n`;
+            
+            commercesObject.forEach(function(item) {
+                commercesList += `    ${item.name}\n`;
+            });
+            
+            
+            document.getElementById("button-del").addEventListener("click", function(){
+                alert(`This item has relationships with:\n\n${commercesList}\nYou must erase the relationships between the elements on the list by changing the city in them.`);
+            });
+        </script>
+    {% endif %}
+{% endif %}
+
+{% if section == 'city' %}
+    {# Commerces #}
+    {% set commerces = [] %}
+    {% if row.commerces|length > 0 %}
+        {% set commerces = [] %}
+        {% for commerce in row.commerces %}
+            {% set commerces = commerces|merge([
+                {
+                    'name' : commerce.name|title
+                }
+            ]) %}
+        {% endfor %}
+        {% set hasRelationship = true %}
+    {% endif %}
+
+    {# Branch Offices #}
+    {% set branchOffices = [] %}
+    {% if row.branchOffices|length > 0 %}
+        {% for office in row.branchOffices %}
+            {% set branchOffices = branchOffices|merge([
+                {
+                    'name' : office.name|title
+                }
+            ]) %}
+        {% endfor %}
+        {% set hasRelationship = true %}
+    {% endif %}
+
+    {# Associate #}
+    {% set associates = [] %}
+    {% if row.associate|length > 0 %}
+        {% for associate in row.associate %}
+            {% set associates = associates|merge([
+                {
+                    'name' : associate.name|title
+                }
+            ]) %}
+        {% endfor %}
+        {% set hasRelationship = true %}
+    {% endif %}
+
+    {# {{ dump(commerces, branchOffices, associates) }} #}
+
+    {% if hasRelationship %}
+        <button id="button-del" class="btn btn-danger pull-left" style="margin-left: 5px;"><i class="fa fa-trash"></i> <span class="hidden-xs">delete</span></button>
+        <script>
+            let commercesObject = {{ commerces|json_encode()|raw }};
+            let commercesList = `Commerces\n`;
+            commercesObject.forEach(function(item) {
+                commercesList += `    ${item.name}\n`;
+            });
+
+            let officesObject = {{ branchOffices|json_encode()|raw }};
+            let officesList = `Branch Offices\n`;
+            officesObject.forEach(function(item) {
+                officesList += `    ${item.name}\n`;
+            });
+
+            let associatesObject = {{ associates|json_encode()|raw }};
+            let associatesList = `Associates\n`;
+            associatesObject.forEach(function(item) {
+                associatesList += `    ${item.name}\n`;
+            });
+
+            document.getElementById("button-del").addEventListener("click", function(){
+                alert(`This item has relationships with:\n\n${commercesList}\n${officesList}\n${associatesList}\nYou must erase the relationships between the elements on the list by changing the city in them.`);
+            });
+        </script>
+    {% endif %}
+{% endif %}
+
+{% if not hasRelationship %}
+    <form method="post" action="{{ path('delete', {'id': row.id,'section':section}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" id="form-del">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ row.id) }}">
+        <button class="btn btn-danger pull-left" style="margin-left: 5px;"><i class="fa fa-trash"></i> <span class="hidden-xs">delete</span></button>
+    </form>
+{% endif %}

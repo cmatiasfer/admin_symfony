@@ -1,0 +1,53 @@
+
+
+{% extends '@admin_views/layout.html.twig' %}
+
+{% block title %}{{ name_admin() }} | Admin Texts - Edit {{ cms_text.variable }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Admin
+                <small>Edit Text <b>{{ cms_text.variable }}</b></small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-shield"></i> Admin</li>
+                <li><a href="{{ path('admin_cms_texts_index') }}"><i class="fa fa-text-height"></i> Texts</a></li>
+                <li class="active">Edit {{ cms_text.variable }}</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    {{ include('@admin_views/admin/_cms_texts/_form.html.twig', {'button_label': 'update', 'button_class': 'success bg-olive', 'i_class': 'fa fa-edit'}) }}
+                    <a href="{{ path('admin_cms_texts_index') }}" class="btn btn-default pull-right"><i class="fa fa-chevron-left"></i> back to list</a>
+                    {{ include('@admin_views/admin/_cms_texts/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- CKEditor -->
+    <script src="{{ asset('bundles/remolinoadmin/bower_components/ckeditor/ckeditor.js') }}"></script>
+    <script>
+        $(function () {
+            // CKEditor
+            CKEDITOR.replace('cms_texts_text_EN', {height:'100px'});
+            CKEDITOR.replace('cms_texts_text_ES', {height:'100px'});
+            CKEDITOR.replace('cms_texts_text_JP', {height:'100px'});
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,35 @@
+services:
+    common_manager:
+        public: true
+        class: "App|\\Remolino\\CoreBundle\\Service\\CommonManager"
+        calls:
+            - [setContainer, ["@service_container"] ]
+            
+    core_twig_extension:
+        class: "App|\\Remolino\\CoreBundle\\Twig\\CoreExtension"
+        calls:
+            - [setContainer, ["@service_container"] ]
+        tags:
+            - { name: twig.extension }
+    
+    app_extension:
+        class: "App|\\Remolino\\CoreBundle\\Twig\\langExtension"
+        calls:
+            - [setContainer, ["@service_container"] ]
+        tags:
+            - { name: twig.extension }
+    
+    twig_name_admin:
+        class: "App|\\Remolino\\CoreBundle\\Twig\\NameAdminExtension"
+        calls:
+            - [setContainer, ["@service_container"] ]
+        tags:
+            - { name: twig.extension }
+            
+    twig.global:
+        class: "App|\\Remolino\\CoreBundle\\Service\\TwigGlobal"
+        calls:
+            - [setContainer, ["@service_container"] ] 
+            - [setSession, ["@session"] ] 
+    
+    #New Filter!!!!

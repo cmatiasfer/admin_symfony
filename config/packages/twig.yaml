@@ -1,0 +1,16 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+
+    # Bundle View Paths
+    paths:
+        # Resources/Views
+        '%kernel.project_dir%/src/Remolino/AdminBundle/Resources/views': admin_views
+        '%kernel.project_dir%/src/Remolino/FrontBundle/Resources/views': front_views
+
+    form_themes:
+        - 'bootstrap_4_layout.html.twig'
+        - '@PrestaImage/form/bootstrap_4.html.twig'
+
+    # exception_controller: App\Remolino\FrontBundle\Controller\ExceptionController::showException

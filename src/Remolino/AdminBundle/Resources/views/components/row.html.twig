@@ -1,0 +1,126 @@
+
+    {% set data = attribute(row, field) %}
+    
+    {% if title == "Image" or title == "Home Image" or title == "Imagen" %}  {# Images #}
+        <img src="{{ asset("images/"~folder_media~"/"~data) }}" alt="" style="width: 50px;" class="img-thumbnail dt-image">
+    {% elseif title == "PDF" %} {# PDFs #}
+        <a href="{{ asset("images/"~folder_media~"/"~data) }}" download="file">Download PDF</a>
+    {% elseif title == "Link" or title == "URL" %} {# Links #}
+        <a href="{{ data }}" target="_blank">{{ data }}</a>
+    {% elseif title == "Map Agregarress" %} {# Agregarress + Google Maps Link #}
+        {# <a href="{{ data.gmapsLink }}" target="_blank">{{ data|raw }}</a> #}
+    {% elseif title == "Gmaps Link" %} {# Gmaps Links #}
+        <a href="{{ data }}" target="_blank">{{ data }}</a>
+    {% elseif title == "Visible" or title == "On Home Page" or title == "Written" == "Visible on Header Menu" or title == "Written" or title == "Visible" or title == "Visible in Home" or title == "Visible in Home R" or title == "Límite de Uso" %} {# Checkboxs / Booleans #}
+        {{ data ? 'Sí' : 'No' }}
+    {% elseif title == "City" %} {# Entity City #}
+        {{ data.name|raw }}
+    {% elseif title == "Categoría" or title == "Lista de precio" or title == "Producto" or title == "Talle" or title == "Color" or title == "Categoría" or title == 'Lista' or title == 'Sitio' %} {# Entity Category #}
+        {% if section == 'sites' %}
+            {{ data|raw }}
+        {% else %}                                      
+            {{ data is null  ? '' : data.name }}
+        {% endif %}
+    {% elseif title == "Variante" %} {# Entity Category #}
+        {{  data is null  ? '' : data.product.name }}
+    {% elseif title == "Page" %} {# Entity Page #}
+        {{ data.title|raw }}
+    {% elseif title == "País" %} {# Country #}
+        {{ data is null  ? '' : data.name }}
+        
+    {% elseif title == "Producto | Categoria"  %} {# Entity Page #}
+        {{ data.products.name ~ " | " ~ data.categories.name }}
+    {% elseif title == "Color (hexadecimal)"  %} {# ViewColor #}
+        {% if data != "" or data is not null %}
+            <span class="view-color" style="{{"background-color:" ~ data}}"  ></span>
+        {% endif %}
+    {% elseif title == "Color (imagen)" %} {# ViewColor #}
+        {% if data != "" or data is not null %}
+            <span class="view-color" style="{{'background: url(' ~ asset('images/' ~ folder_media ~ '/' ~  data) }});background-size:cover;"></span>
+        {% endif %}
+    {% elseif title == "Sent At" or title == "Created At" or title == "Updated At" or title == "Enviado" or title == "Suscrito" %} {# Datetime #}
+        {{ data|date('d-m-Y H:i:s') }}
+    {% elseif title == "Vigencia" or title == "Expiración" %} {# Datetime #}
+        {{ data|date('d-m-Y H:i') }}
+    {% elseif title == "Ícono" %}
+        <i class="{{ data|raw }}"></i>
+    {% elseif title == "Tipo de Cupón" %}
+        {% if data == 'monto-fijo' %}
+            Monto Fijo
+        {% elseif data == 'porcentaje-total' %}
+            Porcentaje Total
+        {% elseif data == 'envio-gratis' %}
+            Envío Gratis
+        {% endif %}
+    {% elseif title == "Estado" %}
+        {{ data|title }}
+    {% elseif title == "Sección" %}
+        {#
+            'Menú'                          => 'menu',
+            'Cabecera'                      => 'header',
+            'Buscador'                      => 'buscador',
+            'Pie de página'                 => 'footer',
+            'Información de contacto'       => 'info-contacto',
+            'RRSS'                          => 'redes',
+            'Usuario/Acceso/Registro'       => 'usuario-acceso-registro',
+            'Home'                          => 'home',
+            'Productos'                     => 'productos',
+            'Tabla de medidas'              => 'medidas',
+            'Carrito de compras'            => 'carrito',
+            'Checkout'                      => 'checkout',
+            'Newsletter'                    => 'newsletter',
+            'Cómo comprar'                  => 'como-comprar',
+            'Preguntas Frecuentes'          => 'preguntas-frecuentes',
+            'Políticas de cambios'          => 'politicas-cambios',
+            'Contacto'                      => 'contacto',
+            'Quienes somos'                 => 'quienes-somos',
+            'Seguridad'                     => 'seguridad',
+            'Términos y condiciones'        => 'terminos-condiciones',
+            'Políticas de privacidad'       => 'policitas-privacidad',
+        #}
+        {% if data == 'menu' %}
+            Menú
+        {% elseif data == 'header' %}
+            Cabecera
+        {% elseif data == 'buscador' %}
+            Búsqueda
+        {% elseif data == 'footer' %}
+            Pie de página
+        {% elseif data == 'info-contacto' %}
+            Información de contacto
+        {% elseif data == 'redes' %}
+            RRSS
+        {% elseif data == 'usuario-acceso-registro' %}
+            Usuario/Acceso/Registro
+        {% elseif data == 'home' %}
+            Home
+        {% elseif data == 'productos' %}
+            Productos
+        {% elseif data == 'medidas' %}
+            Tabla de medidas
+        {% elseif data == 'carrito' %}
+            Carrito de compras
+        {% elseif data == 'checkout' %}
+            Checkout
+        {% elseif data == 'newsletter' %}
+            Newsletter
+        {% elseif data == 'como-comprar' %}
+            Cómo comprar
+        {% elseif data == 'preguntas-frecuentes' %}
+            Preguntas frecuentes
+        {% elseif data == 'politicas-cambios' %}
+            Políticas de cambios
+        {% elseif data == 'contacto' %}
+            Contacto
+        {% elseif data == 'quienes-somos' %}
+            Quienes somos
+        {% elseif data == 'seguridad' %}
+            Seguridad
+        {% elseif data == 'terminos-condiciones' %}
+            Términos y condiciones
+        {% elseif data == 'policitas-privacidad' %}
+            Políticas de privacidad
+        {% endif %}
+    {% else %}
+        {{ data|raw }}
+    {% endif %}

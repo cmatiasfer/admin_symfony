@@ -1,0 +1,126 @@
+{% extends '@admin_views/layout.html.twig' %}
+
+{% block title %}{{ name_admin() }} | Admin - {{ section_title }} - Edit{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% if plugins["cropper"] %}
+        <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/dist/css/cropper.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/prestaimage/css/cropper.css') }}">
+    {% endif %}
+
+    {% if gallery %}
+        <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/css/animate.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/css/toastr.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/css/tingle.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/css/dropzone.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/css/my_dropzone.css') }}">
+    {% endif %}
+
+    <style>
+        #seccion[data-nombre="jobs"] .vich-file{
+            display:none;
+        }
+        .col-form-label.required{
+            display:none!important;
+        }
+        legend{
+            font-weight: 700;
+        }
+        .preview video,
+        .preview img{
+            display:none;
+            margin-bottom:40px;
+            margin-right:15px;
+        }
+        .hide{
+            display:none;
+        }
+    </style>
+
+{% endblock %}
+
+{% block body %}
+    <div id="entity" class="content-wrapper"
+        data-id="{{ id }}"
+        data-name="{{ section }}"
+        data-folder="{{ folder_media }}"
+        {{ gallery ? "data-foldergallery=" ~ section ~ "_gallery" : "" }} >
+
+        <section class="content-header">
+            <h1>
+                Admin
+                <small>{{ section_title|capitalize }}</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('admin_dashboard') }}"><i class="fa fa-dashboard"></i> Panel</a></li>
+                <li><a href="{{ path('list' , {'section' : section}) }}"><i class="fa fa-fa-file-text-o"></i>{{ section_title|capitalize }}</a></li>
+                <li class="active">Edit</li>
+            </ol>
+        </section>
+        <section class="content">
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    <!-- Item -->
+                    {{ include('@admin_views/layouts/_form.html.twig', {'button_label': 'update', 'button_class': 'success bg-olive', 'i_class': 'fa fa-edit'}) }}
+
+
+
+                    <a href="{{ path('list', {'section' : section}) }}" class="btn btn-default pull-right"><i class="fa fa-chevron-left"></i> back</a>
+                    {% if section != 'home' and section != 'page'  and section != 'block_page' %}
+                        {{ include('@admin_views/layouts/_delete_form.html.twig', {'section': section}) }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                     {% if gallery %}
+                        <div id="gallery">
+                            <div class="preload">
+                                <div class='bubblingG'>
+                                    <span id='bubblingG_1'></span>
+                                    <span id='bubblingG_2'></span>
+                                    <span id='bubblingG_3'></span>
+                                </div>
+                            </div>
+                            <div class="dropzone"></div>
+                        </div>
+                        <div class="preview"></div>
+                        <div class="buttons-listing-order">
+                            <span class="edit btn bg-orange">edit listing order</span>
+                            <span class="save-listing-order btn bg-olive">save change</span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- SpeakingURL JS -->
+    <script src="{{ asset('bundles/remolinoadmin/js/speakingurl.min.js') }}"></script>
+    {% if plugins["ckeditor"] %}
+    <!-- CKEditor 5 -->
+    <script src="{{ asset('bundles/remolinoadmin/bower_components/ckeditor/ckeditor.js') }}"></script>
+    {% endif %}
+    <!-- Presta Bundle JS -->
+    {% if plugins["cropper"] %}
+    <script src="{{ asset('bundles/remolinoadmin/dist/js/cropper.min.js') }}"></script>
+    <script src="{{ asset('bundles/prestaimage/js/cropper.js') }}"></script>
+    {% endif %}
+
+    {% if gallery %}
+        <script src="{{ asset('bundles/remolinoadmin/js/tingle.js') }}"></script>
+        <script src="{{ asset('bundles/remolinoadmin/js/sortable.js') }}"></script>
+        <script src="{{ asset('bundles/remolinoadmin/js/toastr.min.js') }}"></script>
+        <script src="{{ asset('bundles/remolinoadmin/js/dropzone.js') }}"></script>
+        <script src="{{ asset('bundles/remolinoadmin/js/_mydropzone.js') }}"></script>
+    {% endif %}
+    <script src="{{ asset('bundles/remolinoadmin/js/layouts.js') }}"></script>
+    
+   {% if plugins["gmap"] %}
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDYCbZuZBmGNJAK7IIP-xifdU2HNjCymxI&libraries=places"  xmlns=""></script>
+    {% endif %}
+{% endblock %}

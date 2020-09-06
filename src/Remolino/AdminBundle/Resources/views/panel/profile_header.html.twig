@@ -1,0 +1,22 @@
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <img src="{{ (profile.imageName) ? asset('images/profile/' ~ profile.imageName) : asset('bundles/remolinoadmin/dist/img/user.png') }}" class="user-image" alt="User Image">
+    <span class="hidden-xs">{{ profile.firstName }} {{ profile.lastName }}</span>
+</a>
+<ul class="dropdown-menu">
+    <!-- User image -->
+    <li class="user-header">
+        <img src="{{ (profile.imageName) ? asset('images/profile/' ~ profile.imageName) : asset('bundles/remolinoadmin/dist/img/user.png') }}" class="img-circle" alt="User Image">
+        <p>
+            Signed as <em>{{ app.user.username }}</em>
+        </p>
+    </li>
+    <!-- Menu Footer-->
+    <li class="user-footer">
+        <div class="pull-left">
+            <a href="{{ path('admin_profile_show', {'id' : app.user.profile }) }}" class="btn btn-default btn-flat"><i class="fa fa-id-card "></i> Profile</a>
+        </div>
+        <div class="pull-right">
+            <a href="{{ path('admin_logout') }}" class="btn btn-danger btn-flat"><i class="fa fa-sign-out"></i> Logout</a>
+        </div>
+    </li>
+</ul>

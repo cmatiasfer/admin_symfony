@@ -1,0 +1,64 @@
+
+{% for block in blocks %}
+    {% if block.sections|length > 0 %}
+        {% set hasSubMenu = "treeview" %}
+        {% set path = "#" %}
+    {% else %}
+        {% set hasSubMenu = "" %}
+        {% if block.route != null %}
+            {% if block.route != 'admin_dashboard' %}
+
+                {% set path = path( 'list' , {section:block.route}) %}
+
+            {% else %}
+                {% set path = path(block.route) %}
+            {% endif %}
+        {% else %}
+            {% set path = '' %}
+        {% endif %}
+    {% endif %}
+
+    <li class="{{hasSubMenu}} {{ (block.name == 'Admin' and 'ROLE_ADMIN' in app.user.getRoles() == false) ? 'notAdmin' : '' }}">
+        <a href="{{ path }}">
+            <i class="{{ block.iconClass }}"></i>
+            <span>{{block.name}}</span>
+
+            {% if block.sections|length > 0 %}
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            {% endif %}
+        </a>
+        <ul class="treeview-menu">
+            {% for section in block.sections|sortbyfield("listingOrder") %}
+                {% set activeNav = "" %}
+
+                {% if section.route == "" %}
+                    {% set sectionPath = "#" %}
+                {% else %}
+
+                    {% if section.route == "admin_cms_user_" or section.route == "admin_cms_texts_" or section.route == "admin_cms_blocks_" or section.route == "admin_cms_sections_" %}
+                        {# <pre>
+                            {{ dump(section.route ~ 'index') }}
+                        </pre> #}
+                        {% set sectionPath = path( section.route  ~ 'index') %}
+                    {% else %}
+                        {% set sectionPath = path( 'list' , {section:section.route}) %}
+                    {% endif %}
+                {% endif %}
+
+                {% if currentSection == section.route~'index' or
+                    currentSection == section.route~'new' or
+                    currentSection == section.route~'edit' or
+                    currentSection == section.route~'show' %}
+                    {% set activeNav = "active" %}
+                {% endif %}
+                <li class="{{activeNav}}">
+                    <a href="{{ sectionPath }}"><i class="{{ section.iconClass }}"></i> {{section.name}}</a>
+                </li>
+            {% else %}
+            {% endfor %}
+        </ul>
+    </li>
+{% else %}
+{% endfor %}

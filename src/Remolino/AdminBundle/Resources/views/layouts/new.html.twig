@@ -1,0 +1,83 @@
+{% extends '@admin_views/layout.html.twig' %}
+
+{% block title %}{{ name_admin() }} | {{ section_title|capitalize }} - Add{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- Presta Bundle -->
+    <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/dist/css/cropper.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/prestaimage/css/cropper.css') }}">
+    <style>
+        #seccion[data-nombre="jobs"] .vich-file{
+            display:none;
+        }
+        .col-form-label.required{
+            display:none!important;
+        }
+        legend{
+            font-weight: 700;
+        }
+        .preview video,
+        .preview img{
+            display:none;
+            margin-bottom:40px;
+            margin-right:15px;
+        }
+        .hide{
+            display:none;
+        }
+    </style>
+
+{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper" id="entity" data-name="{{ section }}" data-form="new">
+        <section class="content-header">
+            <h1>
+                Admin
+                <small>{{ section_title|capitalize }}</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{{ path('admin_dashboard') }}"><i class="fa fa-dashboard"></i> Panel</a></li>
+                <li><a href="{{ path(route~'index') }}"><i class="fa fa-fa-file-text-o"></i> {{ section_title|capitalize }} </a></li>
+                <li class="active">Add</li>
+            </ol>
+        </section>
+
+        {# {{ include('_delete_form/_form.html.twig') }}
+
+         <a href="{{ path('admin_cv_index') }}" class="btn btn-default pull-right"><i class="fa fa-chevron-left"></i> back to list</a> #}
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    {{ include('@admin_views/layouts/_form.html.twig') }}
+                    <a href="{{ path(route~'index') }}" class="btn btn-default pull-right"><i class="fa fa-chevron-left"></i> back to list</a>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/remolinoadmin/bower_components/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('bundles/remolinoadmin/js/speakingurl.min.js') }}"></script>
+    <!-- Presta Bundle JS -->
+    <script src="{{ asset('bundles/remolinoadmin/dist/js/cropper.min.js') }}"></script>
+    <script src="{{ asset('bundles/prestaimage/js/cropper.js') }}"></script>
+    {# 
+    <script src="{{ asset('bundles/remolinoadmin/js/jquery.mask.js') }}"></script>
+    #}
+    {% if multiple_img is defined %}
+        <script src="{{ asset('bundles/remolinoadmin/js/toastr.min.js') }}"></script>
+        <script src="{{ asset('bundles/remolinoadmin/js/dropzone.js') }}"></script>
+        <script src="{{ asset('bundles/remolinoadmin/js/mydropzone.js') }}"></script>
+    {% endif %}
+    <script src="{{ asset('bundles/remolinoadmin/js/layouts.js') }}"></script>
+    {% if section == 'city' or section == 'branch_office' or section == 'commerce' %}
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDYCbZuZBmGNJAK7IIP-xifdU2HNjCymxI&libraries=places"  xmlns=""></script>
+    {% endif %}
+{% endblock %}

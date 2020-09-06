@@ -1,0 +1,48 @@
+{% extends '@admin_views/layout.html.twig' %}
+
+{% block title %}{{ name_admin() }} | Admin User Profile - Edit {{ profile.firstname }} {{ profile.lastname }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- Presta Bundle -->
+    <link rel="stylesheet" href="{{ asset('bundles/remolinoadmin/dist/css/cropper.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/prestaimage/css/cropper.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Admin
+                <small>Edit User <b>{{ app.user.username }}</b></small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-shield"></i> Admin</li>
+                <li class="active">Edit {{ app.user.username }}</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    {{ include('@admin_views/admin/profile/_form.html.twig', {'button_label': 'update', 'button_class': 'success bg-olive', 'i_class': 'fa fa-edit'}) }}
+                    <a href="{{ path('admin_dashboard') }}" class="btn btn-default pull-right"><i class="fa fa-chevron-left"></i> back</a>
+                    {% if app.user.profile == profile.id %}
+                    <a href="{{ path('admin_profile_edit_password', {'id' : profile.id}) }}" class="btn bg-orange pull-right" style="margin-right: 5px;"><i class="fa fa-key"></i> Edit password</a>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Presta Bundle JS -->
+    <script src="{{ asset('bundles/remolinoadmin/dist/js/cropper.min.js') }}"></script>
+    <script src="{{ asset('bundles/prestaimage/js/cropper.js') }}"></script>
+    <!-- Edit File -->
+    <script src="{{ asset('bundles/remolinoadmin/js/layouts.js') }}"></script>
+{% endblock %}

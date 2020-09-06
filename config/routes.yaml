@@ -1,0 +1,13 @@
+# Bundles Annotations Routes
+# Sets the routes where the controllers for every bundle are
+appAdminBundle:
+    # loads routes from the given routing file stored in the admin bundle
+    resource: '../src/Remolino/AdminBundle/Resources/config/routing.yaml'
+
+appFrontBundle:
+    # loads routes from the given routing file stored in the front bundle
+    resource: '../src/Remolino/FrontBundle/Resources/config/routing.yaml'
+
+# Logout User
+admin_logout:
+    path: /logout

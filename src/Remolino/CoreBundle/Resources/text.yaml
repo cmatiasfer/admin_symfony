@@ -1,0 +1,267 @@
+texts: 
+    0: 
+        variable: NAV_STUDIO
+        titleES: Estudio
+        titleEN: Study
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    1: 
+        variable: NAV_PROJECTS
+        titleES: Proyectos
+        titleEN: Projects
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    3: 
+        variable: NAV_CONTACT
+        titleES: contact
+        titleEN: Contacto
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    4: 
+        variable: NAV_ES
+        titleES: es
+        titleEN: es
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    5: 
+        variable: NAV_EN
+        titleES: en
+        titleEN: en
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    6: 
+        variable: PAGE_HOME
+        titleEN: ""
+        titleES: ""
+        textEN: ""
+        textES: ""
+        seoTitle: "CHITA | Home"
+        seoDesc: ""
+    7: 
+        variable: PAGE_HOME_STUDIO
+        titleES: Estudio
+        titleEN: Studio
+        textEN: "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>"
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    9: 
+        variable: FORM_NAME
+        titleES: Nombre
+        titleEN: Name
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    10: 
+        variable: FORM_PHONE
+        titleES: "Teléfono"
+        titleEN: Phone
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    11: 
+        variable: FORM_LAST_NAME
+        titleES: Apellido
+        titleEN: "Last Name"
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    12: 
+        variable: FORM_EMAIL
+        titleES: Email
+        titleEN: Email
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    13: 
+        variable: FORM_MESSAGE
+        titleES: Mensaje
+        titleEN: Message
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    14: 
+        variable: FORM_BTN_SEND
+        titleES: Enviar
+        titleEN: send
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    15: 
+        variable: WEB_EMAIL_RESPONSE_OK
+        titleES: "Muchas gracias! a la brevedad nos pondremos en contacto con vos!"
+        titleEN: "Thank you! We will contact you shortly!"
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    16: 
+        variable: WEB_EMAIL_RESPONSE_ERROR
+        titleES: Error
+        titleEN: Error
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    17: 
+        variable: WEB_EMAIL_SUBJECT
+        titleES: "[CHITA]"
+        titleEN: "[CHITA]"
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    18: 
+        variable: PAGE_PROJECT_STUDY
+        titleES: ""
+        titleEN: ""
+        textEN: ""
+        textES: ""
+        seoTitle: "CHITA | PROJECT STUDY"
+        seoDesc: ""
+    19: 
+        variable: PAGE_PROJECT_ARCHITECTURE
+        titleES: ""
+        titleEN: ""
+        textEN: ""
+        textES: ""
+        seoTitle: "CHITA | PROJECT ARCHITECTURE"
+        seoDesc: ""
+    20: 
+        variable: WEB_BTN_PREV_PROJECT
+        titleES: "Proyecto anterior"
+        titleEN: "Previous Project"
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    21: 
+        variable: WEB_BTN_NEXT_PROJECT
+        titleES: "Próximo proyecto"
+        titleEN: "Next Project"
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    22: 
+        variable: WEB_COPY
+        titleES: "Todos los derechos reservados."
+        titleEN: "All rights reserved."
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    23: 
+        variable: WEB_ADDRESS
+        titleES: ""
+        titleEN: ""
+        textES: "<a href='https://goo.gl/maps/uLsLYnhBU6UVB8Wj9' target='_blank'>Av. del Libertador 658</a>"
+        textEN: "<a href='https://goo.gl/maps/uLsLYnhBU6UVB8Wj9' target='_blank'>Av. del Libertador 658</a>"
+        seoTitle: ""
+        seoDesc: ""
+    24: 
+        variable: WEB_PHONE
+        titleES: ""
+        titleEN: ""
+        textEN: "<a href='tel:+5491548012324'>T. 4801-2324</a>"
+        textES: "<a href='tel:+5491548012324'>T. 4801-2324</a>"
+        seoTitle: ""
+        seoDesc: ""
+    25: 
+        variable: WEB_EMAIL
+        titleES: ""
+        titleEN: ""
+        textEN: "<a href='mailto:info@chita.studio'>info@chita.studio</a>"
+        textES: "<a href='mailto:info@chita.studio'>info@chita.studio</a>"
+        seoTitle: ""
+        seoDesc: ""
+    26: 
+        variable: NAV_DESING
+        titleES: "Diseño"
+        titleEN: Desing
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    27: 
+        variable: NAV_ARCHITECTURE
+        titleES: Arquitectura
+        titleEN: Architecture
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    28: 
+        variable: PAGE_HOME_PROJECT
+        titleES: Projectos
+        titleEN: Project
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    29: 
+        variable: PAGE_HOME_STUDY
+        titleES: Estudio
+        titleEN: Studio
+        textEN: "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>"
+        textES: "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>"
+        seoTitle: ""
+        seoDesc: ""
+    30: 
+        variable: FOOTER_TITLE
+        titleES: Contacto
+        titleEN: Contact
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    31:
+        variable: WEB_EMAIL_SUBJECT
+        titleES: "[CHITA]ASUNTO"
+        titleEN: "[CHITA]ASUNTO"
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    32:
+        variable: WEB_EMAIL_SEND_TO
+        titleES: "mati@remolino.org"
+        titleEN: "mati@remolino.org"
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    33:
+        variable: BREADCRUMP_STUDIO
+        titleES: "Estudio"
+        titleEN: "ESTUDIO"
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    34:
+        variable: BREADCRUMP_PROJECT
+        titleES: "Proyecto"
+        titleEN: "Project"
+        textEN: ""
+        textES: ""
+        seoTitle: ""
+        seoDesc: ""
+    
+    

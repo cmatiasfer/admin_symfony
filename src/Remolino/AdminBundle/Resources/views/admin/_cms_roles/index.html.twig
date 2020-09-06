@@ -1,0 +1,84 @@
+{% extends '@admin_views/layout.html.twig' %}
+
+{% block title %}{{ name_admin() }} | Admin Roles{% endblock %}
+
+{% block body %}
+   <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Admin
+                <small>Roles</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-shield"></i> Admin</li>
+                <li class="active"><i class="fa fa-unlock-alt"></i> Roles</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Manage Roles</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="indexlist" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for cms_role in cms_roles %}
+                                <tr>
+                                    <td>{{ cms_role.id }}</td>
+                                    <td>{{ cms_role.name }}</td>
+                                    <td>{{ cms_role.role }}</td>
+                                    <td>
+                                        <a href="{{ path('admin_cms_roles_show', {'id': cms_role.id}) }}" class="btn bg-navy"><i class="fa fa-file-text"></i> <span class="hidden-xs">show</span></a>
+                                        <a href="{{ path('admin_cms_roles_edit', {'id': cms_role.id}) }}" class="btn bg-orange"><i class="fa fa-edit"></i> <span class="hidden-xs">edit</span></a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">no records found</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="{{ path('admin_cms_roles_new') }}" class="btn bg-olive"><i class="fa fa-plus-circle"></i> add new</a>
+                 </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- DataTables -->
+    <script src="{{ asset('bundles/remolinoadmin/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bundles/remolinoadmin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#indexlist').DataTable({
+                'paging'      : true,
+                'lengthChange': false,
+                'searching'   : false,
+                'ordering'    : true,
+                'info'        : true,
+                'autoWidth'   : false
+            })
+        })
+    </script>
+{% endblock %}

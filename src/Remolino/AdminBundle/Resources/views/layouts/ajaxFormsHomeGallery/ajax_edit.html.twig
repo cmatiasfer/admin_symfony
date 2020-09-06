@@ -1,0 +1,32 @@
+{% block stylesheets %}
+    <style>
+        .tingle-modal-box .content-wrapper{
+            margin-left:0px!important;
+        }
+        .tingle-modal-box .content{
+            padding:0px;
+        }
+        .tingle-modal-box .modal-dialog{
+            width:100%;
+        }
+        .tingle-modal-box .modal.fade.in{
+            padding-left:0px!important;
+        }
+        .tingle-modal-box .content{
+            min-height:0px!important;
+        }
+    </style>
+{% endblock %}
+
+<div class="content-wrapper" id="seccion-ajax" data-name="home_gallery" data-id="{{ homeGallery.id }}">
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-warning">
+            <div class="box-header with-border">
+                {{ include('@admin_views/layouts/ajaxFormsHomeGallery/ajax_form.html.twig',{'button_label': 'update', 'button_class': 'success bg-olive', 'i_class': 'fa fa-edit'}) }}
+            </div>
+        </div>
+
+    </section>
+    <!-- /.content -->
+</div>

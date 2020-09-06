@@ -1,0 +1,30 @@
+{% extends '@front_views/layout.html.twig' %}
+
+{% block title %}Red Creek - Page not found{% endblock %}
+
+{% block stylesheet %}
+{{ parent() }}
+<link href="{{ asset('bundles/remolinofront/css/error404.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block sectionClass %}page-not-found{% endblock %}
+
+{% block body %}
+<section id="404">
+    <!-- tree -->
+    <div class="tree">
+        <b>{{ text('en', '404_PAGE_NOT_FOUND' , 'title') }}</b>
+        <br>
+        <br>
+        {{ text('en', '404_PAGE_NOT_FOUND' , 'text')|striptags('<a><br><b><strong><em><i>')|raw }}
+        <br>
+        <div class="go-home"><a href="{{ path('home') }}">HOME</a></div>
+    </div>
+    <div id="fly" style="background: url({{ (image.imageName) ? asset('images/images_web/' ~ image.imageName) : asset('bundles/remolinofront/images/fly.jpeg') }}) no-repeat center;"></div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('bundles/remolinofront/js/main.js') }}"></script>
+{% endblock %}

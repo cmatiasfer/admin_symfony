@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		{% block SEO %}{% endblock %}
+		
+		<title>{% block title %}{% endblock %}</title>
+		{% block stylesheet %}
+			<link href="{{ asset('bundles/remolinofront/css/bootstrap.min.css') }}" rel="stylesheet">
+			<link href="{{ asset('bundles/remolinofront/css/slick.css') }}" rel="stylesheet">
+			<link href="{{ asset('bundles/remolinofront/css/slick-theme.css') }}" rel="stylesheet">
+			<!-- -->
+			<link href="{{ asset('bundles/remolinofront/css/typos.css') }}" rel="stylesheet">
+			<link href="{{ asset('bundles/remolinofront/css/main.css') }}" rel="stylesheet">
+		{% endblock %}
+	</head>
+
+	<body class="{% block sectionClass %}home{% endblock %}">
+		<!-- Nav -->
+		{% block header %}
+			{{ include('@front_views/components/header.html.twig') }}
+		{% endblock %}
+		<!-- End Nav -->
+
+		<!-- Section -->
+		{% block body %}{% endblock %}
+		<!-- End section -->
+		{% block footer %}
+			{{ include('@front_views/components/footer.html.twig') }}
+		{% endblock %}
+		{% block javascripts %}
+			<script src="{{ asset('bundles/remolinofront/js/jquery-2.2.4.min.js') }}"></script>
+			<script src="{{ asset('bundles/remolinofront/js/tether.min.js') }}"></script>
+			<script src="{{ asset('bundles/remolinofront/js/jquery.krioImageLoader.js') }}"></script>
+		{% endblock %}
+
+	</body>
+
+</html>

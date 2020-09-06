@@ -1,0 +1,29 @@
+
+{{ form_start(form) }}
+    {{ form_row(form) }}
+
+   {#  {% if gallery %}
+
+        <div id="gallery">
+            <div class="preload">
+                <div class='bubblingG'>
+                    <span id='bubblingG_1'></span>
+                    <span id='bubblingG_2'></span>
+                    <span id='bubblingG_3'></span>
+                </div>
+            </div>
+            <div class="dropzone"></div>
+        </div>
+        <div class="preview"></div>
+        <div class="buttons-listing-order">
+            <span class="edit btn bg-orange">edit listing order</span>
+            <span class="save-listing-order btn bg-olive">save change</span>
+        </div>
+
+    {% endif %} #}
+
+    <button class="btn btn-{{ button_class|default('primary') }} pull-left">
+        <i class="{{ i_class|default('fa fa-floppy-o') }}"></i>
+        <span class="hidden-xs">{{ button_label|default('save') }}</span>
+    </button>
+{{ form_end(form) }}

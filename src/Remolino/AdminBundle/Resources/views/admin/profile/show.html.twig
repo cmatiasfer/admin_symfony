@@ -1,0 +1,56 @@
+{% extends '@admin_views/layout.html.twig' %}
+
+{% block title %}{{ name_admin() }} | Admin User Profile - Edit {{ profile.firstname }} {{ profile.lastname }}{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Admin
+                <small>Edit User <b>{{ profile.firstname }}</b></small>
+            </h1>
+             <ol class="breadcrumb">
+                <li><i class="fa fa-shield"></i> Admin</li>
+                <li class="active">Edit {{ app.user.username }}</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <table class="table table-bordered table-hover">
+                        <tbody>
+                            <tr>
+                                <th>Profile Image</th>
+                                <td>
+                                    {% if profile.imageName %}
+                                        <img src="{{ asset('images/profile/' ~ profile.imageName ) }}" style="max-height: 250px;" class="img-thumbnail">
+                                    {% else %}
+                                        <img src="{{ asset('bundles/remolinoadmin/dist/img/user.png') }}" style="max-height: 250px;" class="img-thumbnail">
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Firstname</th>
+                                <td>{{ profile.firstname }}</td>
+                            </tr>
+                            <tr>
+                                <th>Lastname</th>
+                                <td>{{ profile.lastname }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{ profile.email }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <a href="{{ path('admin_profile_edit', {'id': profile.id }) }}" class="btn bg-orange pull-left"><i class="fa fa-edit"></i> <span class="hidden-xs">edit<span></a>
+                    <a href="{{ path('admin_dashboard') }}" class="btn btn-default pull-right"><i class="fa fa-chevron-left"></i> back</a>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}
