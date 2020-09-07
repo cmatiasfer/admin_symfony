@@ -19,11 +19,22 @@ class TextsType extends AbstractType
                     'class' => 'col-sm-12'
                 ]
             ])
-            ->add('title',TextType::class, [
+            ->add('titleEN',TextType::class, [
                 'label' => 'Title EN'
             ])
-            ->add('text', TextareaType::class, [
+            ->add('titleES',TextType::class, [
+                'label' => 'Title ES'
+            ])
+            ->add('textEN', TextareaType::class, [
                 'label' => 'Text EN',
+                'required' => false,
+                'empty_data' => '',
+                'attr' => [
+                    'class' => 'applyCKEditor'
+                ]
+            ])
+            ->add('textES', TextareaType::class, [
+                'label' => 'Text ES',
                 'required' => false,
                 'empty_data' => '',
                 'attr' => [
