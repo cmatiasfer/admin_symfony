@@ -112,7 +112,7 @@ admin:
                     FILETYPE: '.jpg,.jpeg'
                     LANG: 'es'
                     MAXFILESIZE: '10'
-                    ADD_FORM: false
+                    ADD_FORM: true
             list:
                 columns: 
                     Nombre: name

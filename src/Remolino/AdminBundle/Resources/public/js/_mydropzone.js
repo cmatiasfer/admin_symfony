@@ -22,13 +22,6 @@ $(function () {
 	var addForm = $(".dropzoneGallery").attr('data-addForm');
 	var rules_images = $(".dropzoneGallery").attr('data-rules');
 
-	/* var dimension = $(".dropzoneGallery").attr('data-dimensionimage');
-	var listDimension = dimension.split("x");
-	var doubleTypeImage = dimension.split("/").length > 1 ? true : false;
-	var secondDimension = ["", ""];
-	if (doubleTypeImage == true) {
-		secondDimension = dimension.split("/")[1].split("x");
-	} */
 	var fileType = $(".dropzoneGallery").attr('data-filetype');
 	var lang = $(".dropzoneGallery").attr('data-lang');
 	var maxfilesize = $(".dropzoneGallery").attr('data-maxfilesize');
@@ -39,17 +32,12 @@ $(function () {
 	settings = {
 		addForm: addForm,
 		dropzoneStart: true,
-		/* doubleTypeImage: doubleTypeImage, */
 		debug: true,
 		entityGallery: folder,
 		folder: folder,
 		folderGallery: folderGallery,
 		itemId: currentId,
 		rules: JSON.parse(rules_images),
-		/* ImageWidth: listDimension[0],
-		ImageHeight: listDimension[1],
-		ImageWidthSecond: secondDimension[0],
-		ImageHeightSecond: secondDimension[1], */
 		inputOrder: false,
 		maxFilesize: maxfilesize,
 		modeEditionImage: modeEditionImage,
@@ -68,6 +56,7 @@ $(function () {
 		activeSortable();
 		$("#entity").find(".btn-success").not(".save-listing-order").attr("disabled", true);
 	});
+
 	//btn save
 	$(document).on('click', '.save-listing-order', function () {
 		$(".preload").fadeIn();
@@ -154,8 +143,8 @@ $(function () {
 	});
 
 	/* MODAL OPEN - ACTION BTN SUBMIT */
-	$(document).on("submit", "form[name='" + settings.entityGallery + "']", function (e) {
-		e.preventDefault(e);
+	$(document).on("submit", "form[name='" + settings.folderGallery + "']", function (e) {
+		e.preventDefault();
 		Dropzone.autoDiscover = false;
 		var form = $(this);
 		var id = $(".tingle-modal-box").find("#seccion-ajax").attr("data-id");
@@ -208,6 +197,22 @@ $(function () {
 		showMethod: "fadeIn",
 		hideMethod: "fadeOut"
 	};
+
+	$(document).on('change', '#brands_gallery_effect', function () {
+		console.log($(this).val());
+		var currentValue = $(this).val();
+
+		if (currentValue != "fade" && currentValue != "bounce" && currentValue != "zoom") {
+			disableSelect("#brands_gallery_type");
+			disableSelect("#brands_gallery_direction");
+			disableSelect("#brands_gallery_duration");
+		} else {
+			enableSelect("#brands_gallery_type");
+			enableSelect("#brands_gallery_direction");
+			enableSelect("#brands_gallery_duration");
+		}
+
+	});
 
 	//modal
 	var showImage = new tingle.modal({
@@ -543,17 +548,17 @@ function createDropzone(settings) {
 				}
 			});
 
-			/* if (settings.doubleTypeImage) {
+			/* if (file.width == file.height) {
+				typeImg = "cuadrado";
+			} else {
 				if (file.width > file.height) {
 					typeImg = "horizontal";
 				} else {
 					typeImg = "vertical";
 				}
-				formData.append("type", typeImg);
 			} */
-			/* formData.append("dimensionImageW", settings.ImageWidth);
-			formData.append("dimensionImageH", settings.ImageHeight);
-			formData.append("ModeEditionImage", settings.modeEditionImage); */
+			/* var typeImg = "full-width";
+			formData.append("type", typeImg); */
 		}
 	});
 
@@ -702,12 +707,12 @@ function resetJs(modal) {
 
 	//generateCKEditor()
 
-	if ($("#" + modal + "_text_EN")[0] || $("#" + modal + "_text")[0]) {
+	/* if ($("#" + modal + "_text_EN")[0] || $("#" + modal + "_text")[0]) {
 		generateCKEditor("#" + modal + "_text");
 	}
 	if ($("#" + modal + "_title")[0]) {
 		generateCKEditor("#" + modal + "_title");
-	}
+	} */
 }
 
 function htmlPreviewModal(folder, name) {
@@ -761,14 +766,46 @@ function validTypeImage(fileW, fileH, settings) {
 	var validImgMin = false;
 	var validImgMax = false;
 
+	if ('type' in rules.dimensions) {
+		var currentImageType = "";
+		if (fileW < fileH) {
+			currentImageType = "vertical";
+		}
+		if (fileW == fileH) {
+			currentImageType = "box";
+		}
+		if (fileW > fileH) {
+			currentImageType = "horizontal";
+		}
 
-	/* if (typeof rules == 'object') { */
-	/* Modo máximo libre */
-	if (fileW >= rules.dimensions.width && fileH >= rules.dimensions.height) {
-		validImgMin = true;
-		validImgMax = true;
+		const listRulesByType = rules.dimensions.type;
+		var ruleByType = listRulesByType[currentImageType];
+
+		var rulesWidth = ruleByType.width == undefined ? 0 : ruleByType.width;
+		var rulesHeight = ruleByType.height == undefined ? 0 : ruleByType.height;
+		var rulesMaxWidth = rulesWidth + 20;
+		var rulesMaxHeight = rulesWidth + 20;
+		console.log(fileW);
+		console.log(fileH);
+
+		/* 
+		//Rangos
+		if ((fileW >= rulesWidth && fileW <= rulesMaxWidth) && (fileH >= rulesHeight && fileH <= rulesMaxHeight)) { 
+		*/
+		if ((fileW >= rulesWidth) && (fileH >= rulesHeight)) {
+			validImgMin = true;
+			validImgMax = true;
+		}
+	} else {
+		/* Modo máximo libre */
+		var rulesHeight = rules.dimensions.height == undefined ? 0 : rules.dimensions.height;
+		if (fileW >= rules.dimensions.width && fileH >= rulesHeight) {
+			validImgMin = true;
+			validImgMax = true;
+		}
 	}
-	/* } */
+
+
 
 
 
@@ -777,6 +814,7 @@ function validTypeImage(fileW, fileH, settings) {
 	var settingHeight = settings.ImageHeight;
 	var settingWidth = settings.ImageWidth;
 	var mode = "onlyHorizontal";
+	
 	if (settingWidth < settingHeight) {
 		mode = "onlyVertical";
 	}
@@ -794,12 +832,14 @@ function validTypeImage(fileW, fileH, settings) {
 				validImgMax = true;
 			}
 		}
-	} */
+	}
+	*/
 	return [validImgMin, validImgMax];
 }
 
 function createDescription(settings) {
-	/* var text_dim;
+	/* 
+	var text_dim;
 	if (settings.doubleTypeImage) {
 		if (settings.langText == "es") {
 			text_dim = "Imagen Horizontal: " + settings.minImageWidthVertical + "x * px";
@@ -810,19 +850,48 @@ function createDescription(settings) {
 		}
 	} else {
 		text_dim = settings.maxImageWidth + " x * px";
-	} */
+	} 
+	*/
 	var rules = settings.rules;
 	var textGallery;
 	if (settings.langText == "es") {
-		var ratio = "16:9";
+		/* var ratio = "16:9";
 		if (rules.dimensions.width < rules.dimensions.height) {
 			var ratio = "9:16";
+		} */
+		var rulesHeigth = rules.dimensions.height == undefined ? 0 : rules.dimensions.height;
+		textGallery = "<label> Arrastre los archivos dentro del area delimitada.";
+		/* textGallery += "<br> Ratio: " + ratio; */
+		textGallery += "<br> Dimensiones mínimas:";
+		if ('type' in rules.dimensions) {
+			textGallery += "<br>";
+			for (type in rules.dimensions.type) {
+
+				var text_type = "Formato ";
+				if (type == "box") {
+					text_type += "Cuadrado";
+				}
+				if (type == "horizontal") {
+					text_type += "Rectangular";
+				}
+				if (type == "vertical") {
+					text_type += "Vertical";
+				}
+				textGallery += text_type + ": " + rules.dimensions.type[type]["width"];
+				if ('height' in rules.dimensions.type[type]) {
+					textGallery += "x" + rules.dimensions.type[type]["height"];
+				}
+				textGallery += "px <br>";
+
+			}
+		} else {
+			textGallery += rules.dimensions.width + " px ";
 		}
 
-		textGallery = "<label> Arrastre los archivos dentro del area delimitada.";
-		textGallery += "<br> Ratio: " + ratio;
-		textGallery += "<br> Ancho mínimo imágenes: " + rules.dimensions.width + " px ";
-		textGallery += "<br> Alto mínimo imágenes: " + rules.dimensions.height + " px ";
+
+		if (rulesHeigth > 0) {
+			textGallery += "<br> Alto mínimo imágenes: " + rulesHeigth + " px ";
+		}
 		textGallery += "<br> Tipos de archivos permitidos: " + settings.typesFiles;
 		textGallery += "<br> Peso máximo permitido por archivo: " + settings.maxFilesize + "MB </label>";
 	}
@@ -834,4 +903,15 @@ function createDescription(settings) {
 		textGallery += "<br> Maximum weight allowed per file: " + settings.maxFilesize + "MB </label>";
 	} */
 	return textGallery;
+}
+
+function disableSelect(select) {
+	$(select + "option:first").attr('selected', true);
+	$(select).val('');
+	$(select).attr('disabled', 'disabled');
+}
+function enableSelect(select) {
+	$(select + "option:first").attr('selected', true);
+	$(select).val('');
+	$(select).removeAttr('disabled');
 }

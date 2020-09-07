@@ -23,14 +23,14 @@ class HomeGalleryType extends AbstractType
             //         'White' => 'white',
             //     ],
             // ])
-            // ->add('title', TextType::class, [
-            //     'label' => 'Title',
-            //     'required' => false
-            // ])
-            // ->add('text', TextareaType::class, [
-            //     'label' => 'Text',
-            //     'required' => false
-            // ])
+            ->add('title', TextType::class, [
+                'label' => 'Title',
+                'required' => false
+            ])
+            ->add('text', TextareaType::class, [
+                'label' => 'Text',
+                'required' => false
+            ])
             ->add('listingOrder', TextType::class, [
                 'label' => 'Listing Order',
                 'required' => false

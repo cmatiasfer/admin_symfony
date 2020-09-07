@@ -23,7 +23,7 @@ class GalleryController extends AbstractController
 	 */
 	public function uploadImage(Request $request, ImageService $imageService, AdminService $adminService, $section) 
 	{
-		$type = $request->get("type");
+		/* $type = $request->get("type"); */
 		$id = $request->get("currentId");
 		$file = $request->files->get('file');
 		
@@ -60,7 +60,7 @@ class GalleryController extends AbstractController
 			$entityGallery->setMainImageFile($file);
 			$entityGallery->setUpdatedAt(new \DateTime());
 			$entityGallery->setListingOrder($orderFinal);
-			$entityGallery->setTypeImage($type);
+			/* $entityGallery->setTypeImage($type); */
 			$entityGallery->setVisible(true);
 			
 			$em->persist($entityGallery);
@@ -193,13 +193,12 @@ class GalleryController extends AbstractController
   {
 	$em = $this->getDoctrine()->getManager();
 	$nameEntityGallery = $adminService->convertPascalCase($section);
-	dd($nameEntityGallery);
-	$find = $em->getRepository("AppRemo:".$nameEntityGallery)->findOneBy([ "id" => $id]);
-
-	$entityGalleryClass = "App\Remolino\CoreBundle\Entity\\" . $nameEntityGallery;
+	
+	$find = $em->getRepository("AppRemo:".$nameEntityGallery."Gallery")->findOneBy([ "id" => $id]);
+	$entityGalleryClass = "App\Remolino\CoreBundle\Entity\\" . $nameEntityGallery."Gallery";
 	$entityGallery = new $entityGalleryClass();
 	
-	$formClass = "App\Remolino\AdminBundle\Form\\" . $nameEntityGallery . 'Type';
+	$formClass = "App\Remolino\AdminBundle\Form\\" . $nameEntityGallery . 'GalleryType';
 	
 	$form = $this->createForm($formClass, $find);
 	$form->handleRequest($request);
